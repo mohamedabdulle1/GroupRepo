@@ -6,14 +6,27 @@
 package com.sg.SportsBlog.DTO;
 
 import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
  * @author mohamed
  */
+@Entity
 public class Category {
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     int categoryID;
+    @Column(nullable = false)
     String categoryName;
+   @ManyToOne
+    @JoinColumn(name = "tagid")
     Tag tag;        
 
     public int getCategoryID() {

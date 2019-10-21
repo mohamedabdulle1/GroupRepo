@@ -8,20 +8,46 @@ package com.sg.SportsBlog.DTO;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 /**
  *
  * @author mohamed
  */
+@Entity
 public class BlogPost {
+
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     int blogPostID;
+    @Column(nullable = false)
     String title;
+    @Column
     String Author;
+    @Column
     String post;
+    @ManyToOne
+    @JoinColumn(name = "userid")///this column is the foreign key
     Users user;
+    @ManyToOne
+    @JoinColumn(name = "categoryID")
     Category category;
+    @Column
     LocalDate date;
-    List<Tag>tags;
+    @ManyToMany
+    @JoinTable(
+    name = "blogposttag",
+    joinColumns = @JoinColumn(name = "blogpostid"),
+    inverseJoinColumns = @JoinColumn(name = "tagid"))
+    List<Tag> tags;
 
     public int getBlogPostID() {
         return blogPostID;
@@ -140,6 +166,4 @@ public class BlogPost {
         return true;
     }
 
-   
-            
 }

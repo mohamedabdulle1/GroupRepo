@@ -6,14 +6,22 @@
 package com.sg.SportsBlog.DTO;
 
 import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  *
  * @author mohamed
  */
+@Entity
 public class Tag {
- 
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     int tagID;
+  @Column(nullable = false)
     String tagName;
 
     public int getTagID() {
