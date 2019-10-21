@@ -5,11 +5,19 @@
  */
 package com.sg.SportsBlog.Controller;
 
-import javax.servlet.http.HttpServletRequest;
+import com.sg.SportsBlog.DAO.BlogPostDao;
+import com.sg.SportsBlog.DAO.CategoryDao;
+import com.sg.SportsBlog.DAO.RolesDao;
+import com.sg.SportsBlog.DAO.TagDao;
+import com.sg.SportsBlog.DAO.UsersDao;
+import com.sg.SportsBlog.DTO.BlogPost;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+
 
 /**
  *
@@ -17,13 +25,45 @@ import org.springframework.web.bind.annotation.PostMapping;
  */
 @Controller
 public class MainController {
+    @Autowired
+    BlogPostDao BlogPost;
+    
+    @Autowired
+    CategoryDao Category;
+    
+    @Autowired
+    RolesDao Roles;
+    
+    @Autowired
+    TagDao Tag;
+    
+    @Autowired
+    UsersDao Users;
     
     @GetMapping("/")
     public String index(Model model) {
-//        model.addAttribute("stores", null);
+        model.addAttribute("BlogPost", BlogPost.findAll());
         return "index";
     }
+    
+    @PostMapping("/addBlogPost")
+    public String addBlogPost(BlogPost blogpost) {
+        BlogPost.save(BlogPost);
+        return "redirect:/";
+    }
+    
+    @GetMapping("/BlogPost")
+    public String BlogPost(Integer blogpostID, Model model) {
+        BlogPost blogpost = BlogPost.findById(blogpostID).orElse(null);
+    }
 }
+    
+//    @GetMapping("/")
+//    public String index(Model model) {
+////        model.addAttribute("stores", null);
+//        return "index";
+//    }
+//}
     
 //    @PostMapping("/addStore")
 //    public String (BlogPost post) {
