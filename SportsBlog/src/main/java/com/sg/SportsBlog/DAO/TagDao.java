@@ -5,6 +5,8 @@
  */
 package com.sg.SportsBlog.DAO;
 
+import com.sg.SportsBlog.DTO.Tag;
+import com.sg.SportsBlog.DTO.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -13,6 +15,6 @@ import org.springframework.stereotype.Repository;
  * @author Yakub Abdi
  */
 @Repository
-public interface TagDao extends JpaRepository{
+public interface TagDao extends JpaRepository<Tag, Integer>{
     
 }

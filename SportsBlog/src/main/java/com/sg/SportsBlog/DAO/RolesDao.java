@@ -5,8 +5,7 @@
  */
 package com.sg.SportsBlog.DAO;
 
-import com.sg.SportsBlog.DTO.Users;
-import java.util.List;
+import com.sg.SportsBlog.DTO.Roles;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,6 +14,6 @@ import org.springframework.stereotype.Repository;
  * @author Yakub Abdi
  */
 @Repository
-public interface RolesDao extends JpaRepository{
+public interface RolesDao extends JpaRepository<Roles, Integer>{
     
 }

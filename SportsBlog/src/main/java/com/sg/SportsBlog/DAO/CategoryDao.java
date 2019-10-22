@@ -5,8 +5,7 @@
  */
 package com.sg.SportsBlog.DAO;
 
-import com.sg.SportsBlog.DTO.BlogPost;
-import java.util.List;
+import com.sg.SportsBlog.DTO.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,8 +14,6 @@ import org.springframework.stereotype.Repository;
  * @author Yakub Abdi
  */
 @Repository
-public interface CategoryDao extends JpaRepository{
-    
-    List findByBlogPost(BlogPost blogpost);
+public interface CategoryDao extends JpaRepository<Category, Integer>{
     
 }
