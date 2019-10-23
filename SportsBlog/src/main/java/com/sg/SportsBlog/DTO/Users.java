@@ -5,6 +5,7 @@
  */
 package com.sg.SportsBlog.DTO;
 
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,6 +28,15 @@ public class Users {
     String userName;
   @Column
     String password;
+  List<Roles>role;
+
+    public List<Roles> getRole() {
+        return role;
+    }
+
+    public void setRole(List<Roles> role) {
+        this.role = role;
+    }
     
 
     public String getPassword() {
@@ -63,10 +73,12 @@ public class Users {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 23 * hash + this.userID;
-        hash = 23 * hash + Objects.hashCode(this.name);
-        hash = 23 * hash + Objects.hashCode(this.userName);
+        int hash = 7;
+        hash = 43 * hash + this.userID;
+        hash = 43 * hash + Objects.hashCode(this.name);
+        hash = 43 * hash + Objects.hashCode(this.userName);
+        hash = 43 * hash + Objects.hashCode(this.password);
+        hash = 43 * hash + Objects.hashCode(this.role);
         return hash;
     }
 
@@ -91,7 +103,14 @@ public class Users {
         if (!Objects.equals(this.userName, other.userName)) {
             return false;
         }
+        if (!Objects.equals(this.password, other.password)) {
+            return false;
+        }
+        if (!Objects.equals(this.role, other.role)) {
+            return false;
+        }
         return true;
     }
+    
 
 }
