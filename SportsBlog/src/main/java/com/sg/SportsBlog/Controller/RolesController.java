@@ -44,5 +44,10 @@ public class RolesController {
         
         return "Roles";
     }
+    @PostMapping("/deleteRoles")
+    public String deleteRoles(Integer id, Integer rolesID) {
+        Roles.deleteById(rolesID);
+        return "redirect:/viewRoles?rolesID=" + rolesID;
+    }
 }
 

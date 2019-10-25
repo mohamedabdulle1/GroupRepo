@@ -11,6 +11,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -18,56 +21,21 @@ import javax.persistence.Id;
  */
 @Entity
 public class Tag {
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    int tagID;
-  @Column(nullable = false)
-    String tagName;
+    private int tagid;
+    
+        @ManyToOne
+    @JoinColumn(name = "tagid", nullable = false)
+    private Tag tag;
+    
 
-    public int getTagID() {
-        return tagID;
-    }
+    @Column(name = "tagname", nullable = false)
+    private String tagName;
 
-    public void setTagID(int tagID) {
-        this.tagID = tagID;
-    }
 
-    public String getTagName() {
-        return tagName;
-    }
 
-    public void setTagName(String tagName) {
-        this.tagName = tagName;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 83 * hash + this.tagID;
-        hash = 83 * hash + Objects.hashCode(this.tagName);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Tag other = (Tag) obj;
-        if (this.tagID != other.tagID) {
-            return false;
-        }
-        if (!Objects.equals(this.tagName, other.tagName)) {
-            return false;
-        }
-        return true;
-    }
     
     
 }

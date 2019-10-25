@@ -5,12 +5,18 @@
  */
 package com.sg.SportsBlog.DTO;
 
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import org.springframework.context.annotation.Role;
 
 /**
  *
@@ -21,54 +27,27 @@ public class Roles {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     int roleID;
-    @Column(nullable = false)
-    String roleName;
-
-    public int getRoleID() {
-        return roleID;
-    }
-
-    public void setRoleID(int roleID) {
-        this.roleID = roleID;
-    }
-
-    public String getRoleName() {
-        return roleName;
-    }
-
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 23 * hash + this.roleID;
-        hash = 23 * hash + Objects.hashCode(this.roleName);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Roles other = (Roles) obj;
-        if (this.roleID != other.roleID) {
-            return false;
-        }
-        if (!Objects.equals(this.roleName, other.roleName)) {
-            return false;
-        }
-        return true;
-    }
     
+    @Column(name = "roles", nullable = false)
+    private String roles;
     
+    @Column(name = "roleid", nullable = false)
+    private String rolename;
+    
+    @ManyToOne
+    @JoinColumn(name = "userid", nullable = false)
+    private Role user;
+    
+    @ManyToMany
+    @JoinTable(name = "userroles",
+            joinColumn = {
+                @JoinColumn(name = "rolesid")},
+            inverseJoinColumns = {
+                @JoinColumn(name = "userid")})
+                
+    private List<Users> users;
+    
+    @ManyToMany(mappedBy = "roles")
+    private List<Roles> role;
 
 }

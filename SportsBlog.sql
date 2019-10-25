@@ -6,8 +6,10 @@ use Sports;
 
 create table Users(
 UserID int primary key auto_increment,
-`name` varchar(50) not null,
-username varchar(50) not null
+`userName` varchar(50) not null unique,
+`password` varchar(100) not null,
+`enabled` boolean not null,
+`admin` varchar(50)
 );
 
 create table Tags(
@@ -37,7 +39,7 @@ foreign key (categoryID) references Category(categoryID)
 
 create table Roles(
 RoleID int primary key auto_increment,
-roleName varchar(50) not null
+`role` varchar(50) not null
 );
 
 create table UserRole(

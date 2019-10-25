@@ -22,32 +22,44 @@ import javax.persistence.ManyToOne;
  *
  * @author mohamed
  */
-@Entity
+@Entity(name = "blogposts")
 public class BlogPost {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     int blogPostID;
+    
+    @Column(nullable = false) 
+    private String title;
+    
     @Column(nullable = false)
-    String title;
-    @Column
-    String Author;
-    @Column
-    String post;
+    private String Author;
+    
+    @Column(nullable = false)
+    private String post;
+    
+    
     @ManyToOne
-    @JoinColumn(name = "userid")///this column is the foreign key
+    @JoinColumn(name = "userid") ///this column is the foreign key        
     Users user;
+    
+    
     @ManyToOne
     @JoinColumn(name = "categoryID")
     Category category;
+    
+    
     @Column
     LocalDate date;
+    
+    
     @ManyToMany
     @JoinTable(
     name = "blogposttag",
     joinColumns = @JoinColumn(name = "blogpostid"),
     inverseJoinColumns = @JoinColumn(name = "tagid"))
     List<Tag> tags;
+    
 
     public int getBlogPostID() {
         return blogPostID;
