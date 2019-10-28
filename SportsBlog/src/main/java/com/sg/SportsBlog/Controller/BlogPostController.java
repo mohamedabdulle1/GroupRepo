@@ -35,7 +35,7 @@ public class BlogPostController {
     public String index(Model model) {
         model.addAttribute("BlogPosts", BlogPost.findAll());
         return "index";
-    }
+    }  // sort blogpost by newest posts
     
     @PostMapping("/BlogPost")
     public String addBlogPost(BlogPost post) {
@@ -52,17 +52,7 @@ public class BlogPostController {
         model.addAttribute("Posts", postList);
         
         return "Post";
-    }
     
-    @PostMapping("/addPosts")
-    public String addPost(BlogPost blogpostID, HttpServletRequest request) {
-        int blogpostId = Integer.parseInt(request.getParameter("blogpostID"));
-        BlogPost blogpost = BlogPost.findById(blogpostId).orElse(null);
-        blogpost.setBlogPostID(blogpostId);
-        
-        
-       BlogPost.save(blogpost);
-       return "redirect:/viewPost?blogpostID=" + blogpostID;
     }
     
     @GetMapping("/deleteBlogPost")

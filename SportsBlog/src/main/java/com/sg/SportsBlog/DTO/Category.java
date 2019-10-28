@@ -25,6 +25,8 @@ public class Category {
     int categoryID;
     @Column(nullable = false)
     String categoryName;
+    
+    
    @ManyToOne
     @JoinColumn(name = "tagid")
     Tag tag;        

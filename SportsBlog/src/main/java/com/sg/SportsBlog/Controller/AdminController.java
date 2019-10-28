@@ -27,6 +27,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Role;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,38 +36,55 @@ import org.springframework.web.bind.annotation.PostMapping;
  *
  * @author Yakub Abdi
  */
-@Entity(name = "Admin")
+@Controller
 public class AdminController implements Serializable {
 
    @Autowired
-   UsersDao users;
+   UsersDao usersDao;
    
    @Autowired
-   RolesDao roles;
-   
+   RolesDao rolesDao;
+      
    @Autowired
    PasswordEncoder encoder;
-   @GetMapping("/admin")
-   public String displayAdminPage(Model model){
-       model.addAttribute("users", users.getAllUsers());
-       return "admin";
+   @GetMapping("/")
+   public String index(Model model){
+       model.addAttribute("users", usersDao.findAll());
+       return "index";
    }
    @PostMapping("/addUser")
-   public String addUser(String username, String password){
-       User user = new User();
-       user.setUsername(encoder.encode(password));
-       user.setPassword(encoder.encode(password));
-       user.setEnabled(true);
-       Set<Role> userRoles = new HashSet<>();
-       userRoles.add(roles.getRoleByRole("ROLE_USER"));
-       user.setRoles(userRoles);
-       users.createUser(user);
-       return "redirect:/admin";
+   public String addUser(Users username, Users password){
+       usersDao.save(username);
+       usersDao.save(password);
+       return "redirect:/";
    }
+       
+//       User user = new User();
+//       user.setUsername(encoder.encode(password));
+//       user.setPassword(encoder.encode(password));
+//       user.setEnabled(true);
+//       Set<Role> userRoles = new HashSet<>();
+//       userRoles.add(roles.getRoleByRole("ROLE_USER"));
+//       user.setRoles(userRoles);
+//       users.createUser(user);
+//       return "redirect:/admin";
+   @GetMapping("/viewUsers")
+   public String viewUsers(String username, String Role, Model model) {
+       Users user = usersDao.findUserByUserName(username);
+       List<Users> users = usersDao.findAll();
+       
+       model.addAttribute("Users", usersDao);
+       return "Users";
+   }
+   
    @PostMapping("/deleteUser") // we are doing a post to delete user and are sending along is the id of user, that is the route to create on the backend
-   public String deleteUser(Integer id){
-       users.deleteUser(id);
-       return "redirect: /admin";
+   public String deleteUser(Users username, Users password){
+       usersDao.delete(username);
+       usersDao.delete(password);
+       return "redirect:/viewUsers?username=" + username;
+       
+//       users.deleteUser(id);
+//       return "redirect: /admin";
    }
    @GetMapping("/editUser") // the id of the user is being sent over to us form the link so we just need to get the user based on that and all of our roles to send out to the page
    public String editUserDisplay(Model model, Integer id, Integer error){

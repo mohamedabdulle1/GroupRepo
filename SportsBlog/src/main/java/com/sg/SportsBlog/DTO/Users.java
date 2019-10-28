@@ -35,14 +35,6 @@ public class Users {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "role", nullable = false)
-    private String role;
-
-    @ManyToOne
-    @JoinColumn(name = "userid", nullable = false)
-    private Users user;
-
-
     @ManyToMany
     @JoinTable(name = "usersroles",
             joinColumns = {
@@ -50,9 +42,6 @@ public class Users {
             inverseJoinColumns = {
                 @JoinColumn(name = "rolesid")})
     private List<Roles> roles;
-
-    @ManyToMany(mappedBy = "users")
-    private List<Users> users;
 
     public int getUsersId() {
         return usersId;
@@ -78,22 +67,6 @@ public class Users {
         this.password = password;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public Users getUser() {
-        return user;
-    }
-
-    public void setUser(Users user) {
-        this.user = user;
-    }
-
     public List<Roles> getRoles() {
         return roles;
     }
@@ -102,24 +75,13 @@ public class Users {
         this.roles = roles;
     }
 
-    public List<Users> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<Users> users) {
-        this.users = users;
-    }
-
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 29 * hash + this.usersId;
-        hash = 29 * hash + Objects.hashCode(this.username);
-        hash = 29 * hash + Objects.hashCode(this.password);
-        hash = 29 * hash + Objects.hashCode(this.role);
-        hash = 29 * hash + Objects.hashCode(this.user);
-        hash = 29 * hash + Objects.hashCode(this.roles);
-        hash = 29 * hash + Objects.hashCode(this.users);
+        hash = 59 * hash + this.usersId;
+        hash = 59 * hash + Objects.hashCode(this.username);
+        hash = 59 * hash + Objects.hashCode(this.password);
+        hash = 59 * hash + Objects.hashCode(this.roles);
         return hash;
     }
 
@@ -144,21 +106,11 @@ public class Users {
         if (!Objects.equals(this.password, other.password)) {
             return false;
         }
-        if (!Objects.equals(this.role, other.role)) {
-            return false;
-        }
-        if (!Objects.equals(this.user, other.user)) {
-            return false;
-        }
         if (!Objects.equals(this.roles, other.roles)) {
-            return false;
-        }
-        if (!Objects.equals(this.users, other.users)) {
             return false;
         }
         return true;
     }
-    
-    
+
 
 }

@@ -28,27 +28,9 @@ public class Roles {
     @Id
     int roleID;
     
-    @Column(name = "roles", nullable = false)
-    private String roles;
     
-    @Column(name = "roleid", nullable = false)
+    @Column(name = "rolename", nullable = false)
     private String rolename;
-    
-    @ManyToOne
-    @JoinColumn(name = "userid", nullable = false)
-    private Role user;
-    
-    @ManyToMany
-    @JoinTable(name = "userroles",
-            joinColumns = {
-                @JoinColumn(name = "rolesid")},
-            inverseJoinColumns = {
-                @JoinColumn(name = "userid")})
-                
-    private List<Users> users;
-    
-    @ManyToMany(mappedBy = "roles")
-    private List<Roles> role;
 
     public int getRoleID() {
         return roleID;
@@ -56,14 +38,6 @@ public class Roles {
 
     public void setRoleID(int roleID) {
         this.roleID = roleID;
-    }
-
-    public String getRoles() {
-        return roles;
-    }
-
-    public void setRoles(String roles) {
-        this.roles = roles;
     }
 
     public String getRolename() {
@@ -74,39 +48,11 @@ public class Roles {
         this.rolename = rolename;
     }
 
-    public Role getUser() {
-        return user;
-    }
-
-    public void setUser(Role user) {
-        this.user = user;
-    }
-
-    public List<Users> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<Users> users) {
-        this.users = users;
-    }
-
-    public List<Roles> getRole() {
-        return role;
-    }
-
-    public void setRole(List<Roles> role) {
-        this.role = role;
-    }
-
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 29 * hash + this.roleID;
-        hash = 29 * hash + Objects.hashCode(this.roles);
-        hash = 29 * hash + Objects.hashCode(this.rolename);
-        hash = 29 * hash + Objects.hashCode(this.user);
-        hash = 29 * hash + Objects.hashCode(this.users);
-        hash = 29 * hash + Objects.hashCode(this.role);
+        hash = 53 * hash + this.roleID;
+        hash = 53 * hash + Objects.hashCode(this.rolename);
         return hash;
     }
 
@@ -125,23 +71,11 @@ public class Roles {
         if (this.roleID != other.roleID) {
             return false;
         }
-        if (!Objects.equals(this.roles, other.roles)) {
-            return false;
-        }
         if (!Objects.equals(this.rolename, other.rolename)) {
-            return false;
-        }
-        if (!Objects.equals(this.user, other.user)) {
-            return false;
-        }
-        if (!Objects.equals(this.users, other.users)) {
-            return false;
-        }
-        if (!Objects.equals(this.role, other.role)) {
             return false;
         }
         return true;
     }
-
+    
     
 }
