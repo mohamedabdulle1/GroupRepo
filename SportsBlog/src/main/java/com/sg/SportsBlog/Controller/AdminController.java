@@ -25,7 +25,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Role;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,7 +46,7 @@ public class AdminController implements Serializable {
       
    @Autowired
    PasswordEncoder encoder;
-   @GetMapping("/")
+   @GetMapping("/users")
    public String index(Model model){
        model.addAttribute("users", usersDao.findAll());
        return "index";
@@ -73,25 +72,24 @@ public class AdminController implements Serializable {
        Users user = usersDao.findUserByUserName(username);
        List<Users> users = usersDao.findAll();
        
-       model.addAttribute("Users", usersDao);
+       model.addAttribute("Users", users);
        return "Users";
    }
    
    @PostMapping("/deleteUser") // we are doing a post to delete user and are sending along is the id of user, that is the route to create on the backend
-   public String deleteUser(Users username, Users password){
-       usersDao.delete(username);
-       usersDao.delete(password);
-       return "redirect:/viewUsers?username=" + username;
+   public String deleteUser(int userID){
+       usersDao.deleteById(userID);
+
+       return "redirect:/viewUsers" ;
        
 //       users.deleteUser(id);
 //       return "redirect: /admin";
    }
    @GetMapping("/editUser") // the id of the user is being sent over to us form the link so we just need to get the user based on that and all of our roles to send out to the page
-   public String editUserDisplay(Model model, Integer id, Integer error){
-       User user = users.getUserById(id);
-       List roleList = roles.getAllRoles();
-       model.addAttribute("user", user);
-       model.addAttribute("roles", roleList);
+   public String editUserDisplay(String username, Model model, Integer error){
+       Users user = usersDao.findUserByUserName(username);
+      
+        model.addAttribute("User", user);
        if(error != null){
            if(error == 1){
                model.addAttribute("error, Passwords did not match, passwords was not updated.");
@@ -101,29 +99,24 @@ public class AdminController implements Serializable {
        return "editUser";
    }
    @PostMapping(value="/editUser")
-   public String editUserAction(String[] roleIdList, Boolean enabled, Integer id){
-       User user = users.getUserById(id);
-       if(enabled != null){
-           user.setEnabled(enabled);
-       }else {
-           user.setEnabled(false);
-       }
-       Set<Role> roleList = new HashSet<>();
-       for(String roleId: roleIdList){
-           Role role = roles.getRoleById(Integer.parseInt(roleId));
+   public String editUserAction(String[] roleIDList, Integer id){
+       Users user = usersDao.findById(id).orElse(null);
+       Set<Roles> roleList = new HashSet<>();
+       for(String roleId: roleIDList){
+           Roles role = rolesDao.findById(Integer.parseInt(roleId)).orElse(null);
            roleList.add(role);
        }
        user.setRoles(roleList);
-       users.updateUser(user);
-       return "redirect:/admin";
+       usersDao.save(user);
+       return "redirect:/viewUsers";
    }
    @PostMapping("editPassword")
    public String edipPassword(Integer id, String password, String confirmPassword){
-       User user = users.getUserById(id);
+       Users user = usersDao.findById(id).orElse(null);
        if(password.equals(confirmPassword)){
            user.setPassword(encoder.encode(password));
-           users.updateUser(user);
-           return "redirect:/admin";
+           usersDao.save(user);
+           return "redirect:/viewUsers";
        }else{
            return "redirect:/editUser ?id=" + id + "error=1";
        }

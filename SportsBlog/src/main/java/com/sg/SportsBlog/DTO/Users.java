@@ -41,7 +41,7 @@ public class Users {
                 @JoinColumn(name = "usersid")},
             inverseJoinColumns = {
                 @JoinColumn(name = "rolesid")})
-    private List<Roles> roles;
+    private Set<Roles> roles;
 
     public int getUsersId() {
         return usersId;
@@ -67,11 +67,11 @@ public class Users {
         this.password = password;
     }
 
-    public List<Roles> getRoles() {
+    public Set<Roles> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<Roles> roles) {
+    public void setRoles(Set<Roles> roles) {
         this.roles = roles;
     }
 
