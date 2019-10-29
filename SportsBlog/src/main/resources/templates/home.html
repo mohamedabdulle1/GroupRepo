@@ -18,38 +18,70 @@ body {
        background-size:cover;
 } 
 
-
-
 </style>
 
   </head>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+ <a class="nav-link" href="home.html">Home</a>
+ <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+   <span class="navbar-toggler-icon"></span>
+ </button>
+ <div class="collapse navbar-collapse" id="navbarSupportedContent">
+   <ul class="navbar-nav mr-auto">
+     <li class="nav-item active">
+       <a class="nav-link" href="about.html"> About Us<span class="sr-only">(current)</span></a>
+     </li>
+    
+     <li class="nav-item dropdown">
+       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         Categories
+       </a>
+       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+         <a class="dropdown-item" href="basketball.html">Basketball</a>
+         <div class="dropdown-divider"></div>
+         <a class="dropdown-item" href="boxing.html">Boxing</a>
+         <div class="dropdown-divider"></div>
+         <a class="dropdown-item" href="#">Soccer</a>
+       </div>
+     </li>
+     <li class="nav-item">
+       <a class="nav-link" href="User.html">Login<span class="sr-only">(current)</span></a>
+     </li>
+   </ul>
+   <form class="form-inline my-2 my-lg-0">
+     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+   </form>
+ </div>
+</nav>
+                     
   <body>
       <div class="container">
           <div class="row">
-              <h1>Sports Blog</h1>
+              <h1></h1>
           </div>
           <div class="row">
               <div class="col-8">
                   <div class="row">
-                    <h2 > Welcome to the Sports blog join the blog family</h2>
-                      <h3 class="col-12">SportsBlog</h3>
-                      <div th:each="store : ${stores}" class="col-4 card text-center m-1">
-                          <div class="card-body">
-                              
-                              <a href="#" th:href="@{viewInventory(id=${store.id})}" class="card-link">About Us</a>                       
-                              <a href="#" th:href="@{viewInventory(id=${store.id})}" class="card-link">View Blogs</a>
+                    <h2 > </h2>
+                      <h3 class="col-12"></h3>
+ 
 
-                              
-  
-  <a href="Basketball.html"
-class="card-link">Basketball
-</a>
-<a href="soccer.html"
-class="card-link">Soccer
-</a>
-<a href="boxing.html"
-class="card-link">Boxing
-</a>
+
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+        <img src="Nba2020.jpg" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="boxing1.jpg" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="soccer1.jpg" class="d-block w-100" alt="...">
+    </div>
+  </div>
+</div>
 
   
 
@@ -58,23 +90,8 @@ class="card-link">Boxing
                       </div>
                   </div>
               </div>
-              <div class="col-4">
-                  <h3>Login</h3>
-                  <form action="addUser" method="POST" class="form">
-                      <div class="form-group">
-                          <label class="col-4" for="User">Username</label>
-                          <input class="col-8 form-control" type="text" id="storeName" name="name"/>
-                      </div>
-                      <div class="form-group">
-                          <label class="col-4" for="Password">Password</label>
-                          <input class="col-8 form-control" type="text" id="storeLocation" name="location"/>
-                      </div>
-                      <div class="form-group">
-                         
-                      </div>
-                      <button type="submit" class="btn btn-primary">Enter</button>
-                  </form>
-              </div>
+
+             
           </div>
       </div>
     <!-- Optional JavaScript --> 
