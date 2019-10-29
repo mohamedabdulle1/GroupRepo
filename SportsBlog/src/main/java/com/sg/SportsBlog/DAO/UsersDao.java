@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 
 /**
  *
- * @author GROUP
+ * @author Group
  */
 @Repository
 public interface UsersDao extends JpaRepository <Users, Integer>{

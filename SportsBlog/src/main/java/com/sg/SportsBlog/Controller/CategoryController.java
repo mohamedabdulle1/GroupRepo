@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  *
- * @author Yakub Abdi
+ * @author Group
  */
 @Controller
 public class CategoryController {
@@ -24,7 +24,7 @@ public class CategoryController {
     @Autowired
     CategoryDao Category;
     
-    @GetMapping("/")
+    @GetMapping("/category")
     public String index(Model model) {
         model.addAttribute("Categories", Category.findAll());
         return "index";

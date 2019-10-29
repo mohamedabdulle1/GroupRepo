@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 
 /**
  *
- * @author Yakub Abdi
+ * @author Group
  */
 @Repository
 public interface CategoryDao extends JpaRepository<Category, Integer>{

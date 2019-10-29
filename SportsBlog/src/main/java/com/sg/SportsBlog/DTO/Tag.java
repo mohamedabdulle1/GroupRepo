@@ -17,7 +17,7 @@ import javax.persistence.ManyToOne;
 
 /**
  *
- * @author mohamed
+ * @author Group
  */
 @Entity
 public class Tag {

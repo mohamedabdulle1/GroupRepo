@@ -18,7 +18,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
  *
- * @author GROUP
+ * @author Group
  */
 @Configuration
 @EnableWebSecurity

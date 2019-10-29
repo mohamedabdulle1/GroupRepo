@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  *
- * @author mohamed
+ * @author Group
  */
 @Controller
 public class contentCreation {

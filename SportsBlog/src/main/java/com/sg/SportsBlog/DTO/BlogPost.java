@@ -20,20 +20,21 @@ import javax.persistence.ManyToOne;
 
 /**
  *
- * @author mohamed
+ * @author Group
  */
-@Entity(name = "blogposts")
+@Entity(name = "blogpost")
 public class BlogPost {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
+    @Column(name = "blogpostid")
     int blogPostID;
     
     @Column(nullable = false) 
     private String title;
     
-    @Column(nullable = false)
-    private String Author;
+//    @Column(nullable = false)
+//    private String Author;
     
     @Column(nullable = false)
     private String post;
@@ -45,7 +46,7 @@ public class BlogPost {
     
     
     @ManyToOne
-    @JoinColumn(name = "categoryID")
+    @JoinColumn(name = "categoryid")
     Category category;
     
     
@@ -77,13 +78,13 @@ public class BlogPost {
         this.title = title;
     }
 
-    public String getAuthor() {
-        return Author;
-    }
-
-    public void setAuthor(String Author) {
-        this.Author = Author;
-    }
+//    public String getAuthor() {
+//        return Author;
+//    }
+//
+//    public void setAuthor(String Author) {
+//        this.Author = Author;
+//    }
 
     public String getPost() {
         return post;
@@ -130,7 +131,7 @@ public class BlogPost {
         int hash = 3;
         hash = 17 * hash + this.blogPostID;
         hash = 17 * hash + Objects.hashCode(this.title);
-        hash = 17 * hash + Objects.hashCode(this.Author);
+//        hash = 17 * hash + Objects.hashCode(this.Author);
         hash = 17 * hash + Objects.hashCode(this.post);
         hash = 17 * hash + Objects.hashCode(this.user);
         hash = 17 * hash + Objects.hashCode(this.category);
@@ -157,9 +158,9 @@ public class BlogPost {
         if (!Objects.equals(this.title, other.title)) {
             return false;
         }
-        if (!Objects.equals(this.Author, other.Author)) {
-            return false;
-        }
+//        if (!Objects.equals(this.Author, other.Author)) {
+//            return false;
+//        }
         if (!Objects.equals(this.post, other.post)) {
             return false;
         }

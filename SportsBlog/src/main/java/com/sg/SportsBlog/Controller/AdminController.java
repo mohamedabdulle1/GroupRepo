@@ -33,7 +33,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  *
- * @author Yakub Abdi
+ * @author Group
  */
 @Controller
 public class AdminController implements Serializable {

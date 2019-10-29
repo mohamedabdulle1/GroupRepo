@@ -22,10 +22,8 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * @author mohamed
+ * @author Group
  */
-public class userImpl {
-
     @Service // indicate this file is a bean that should be created at startup
     public class UserDetailsServiceImpl implements UserDetailsService {
 
@@ -43,4 +41,4 @@ public class userImpl {
         }
     }
 
-}
+
