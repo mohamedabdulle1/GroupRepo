@@ -33,7 +33,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  *
- * @author Yakub Abdi
+ * @author Group
  */
 @Controller
 public class AdminController implements Serializable {
@@ -69,7 +69,7 @@ public class AdminController implements Serializable {
 //       return "redirect:/admin";
    @GetMapping("/viewUsers")
    public String viewUsers(String username, String Role, Model model) {
-       Users user = usersDao.findUserByUserName(username);
+       Users user = usersDao.findUserByUsername(username);
        List<Users> users = usersDao.findAll();
        
        model.addAttribute("Users", users);
@@ -87,7 +87,7 @@ public class AdminController implements Serializable {
    }
    @GetMapping("/editUser") // the id of the user is being sent over to us form the link so we just need to get the user based on that and all of our roles to send out to the page
    public String editUserDisplay(String username, Model model, Integer error){
-       Users user = usersDao.findUserByUserName(username);
+       Users user = usersDao.findUserByUsername(username);
       
         model.addAttribute("User", user);
        if(error != null){

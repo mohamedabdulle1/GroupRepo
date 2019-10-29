@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 
 /**
  *
- * @author mohamed
+ * @author Group
  */
 @Repository
 public interface BlogPostDao extends JpaRepository<BlogPost, Integer> {

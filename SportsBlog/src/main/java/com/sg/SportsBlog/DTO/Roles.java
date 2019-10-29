@@ -20,7 +20,7 @@ import org.springframework.context.annotation.Role;
 
 /**
  *
- * @author mohamed
+ * @author Group
  */
 @Entity
 public class Roles {

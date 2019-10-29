@@ -13,12 +13,12 @@ import org.springframework.stereotype.Repository;
 
 /**
  *
- * @author Yakub Abdi
+ * @author Group
  */
 @Repository
 public interface UsersDao extends JpaRepository <Users, Integer>{
     
 
-    Users findUserByUserName(String userName);
+    Users findUserByUsername(String userName);
 
 }
