@@ -26,10 +26,11 @@ import org.springframework.context.annotation.Role;
 public class Roles {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
+    @Column(name = "roleid")
     int roleID;
     
     
-    @Column(name = "rolename", nullable = false)
+    @Column(name = "role", nullable = false)
     private String rolename;
 
     public int getRoleID() {

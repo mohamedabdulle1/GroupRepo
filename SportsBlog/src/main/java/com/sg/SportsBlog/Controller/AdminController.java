@@ -49,7 +49,7 @@ public class AdminController implements Serializable {
    @GetMapping("/users")
    public String index(Model model){
        model.addAttribute("users", usersDao.findAll());
-       return "index";
+       return "home";
    }
    @PostMapping("/addUser")
    public String addUser(Users username, Users password){

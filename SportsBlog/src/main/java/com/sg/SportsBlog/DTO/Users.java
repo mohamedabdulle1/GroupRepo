@@ -10,6 +10,7 @@ import java.util.Objects;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,6 +28,7 @@ public class Users {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
+    @Column(name = "userid")
     private int usersId;
 
     @Column(name = "username", nullable = false)
@@ -35,12 +37,12 @@ public class Users {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @ManyToMany
-    @JoinTable(name = "usersroles",
+    @ManyToMany(fetch = FetchType.EAGER)//NEEDs this for roles
+    @JoinTable(name = "userrole",
             joinColumns = {
-                @JoinColumn(name = "usersid")},
+                @JoinColumn(name = "userid")},
             inverseJoinColumns = {
-                @JoinColumn(name = "rolesid")})
+                @JoinColumn(name = "roleid")})
     private Set<Roles> roles;
 
     public int getUsersId() {

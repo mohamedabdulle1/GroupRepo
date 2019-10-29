@@ -34,7 +34,7 @@ public class BlogPostController {
     @GetMapping("/")
     public String index(Model model) {
         model.addAttribute("BlogPosts", BlogPost.findAll());
-        return "index";
+        return "home";
     }  // sort blogpost by newest posts
     
     @PostMapping("/BlogPost")
