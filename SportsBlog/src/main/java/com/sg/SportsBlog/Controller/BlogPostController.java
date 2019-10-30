@@ -11,6 +11,7 @@ import com.sg.SportsBlog.DAO.RolesDao;
 import com.sg.SportsBlog.DAO.TagDao;
 import com.sg.SportsBlog.DAO.UsersDao;
 import com.sg.SportsBlog.DTO.BlogPost;
+import com.sg.SportsBlog.DTO.Users;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,4 +61,33 @@ public class BlogPostController {
         BlogPost.deleteById(blogpostID);
         return "redirect:/viewPost?blogpostID=" + blogpostID;
     }
+     @GetMapping("/boxing")
+    public String Boxingindex(Model model) {
+        model.addAttribute("BlogPosts", BlogPost.findAll());
+        return "boxing";
+    }  // sort blogpost by newest p
+    
+      @PostMapping("/boxing")
+    public String addBoxing(BlogPost post) {
+        BlogPost.save(post);
+        return "redirect:/boxing";
+    }
+    
+     @GetMapping("/contentcreation")
+    public String  contentcreation(Model model) {
+        model.addAttribute("BlogPosts", BlogPost.findAll());
+        return "contentcreation";
+    }  // sort blogpost by newest p
+    
+      @PostMapping("/home")
+    public String contentcreation(BlogPost post) {
+        BlogPost.save(post);
+        return "redirect:/contentcreation";
+    }
+    
+//    @GetMapping("/Admin")
+//    public String Added{
+//        Users.save(posted);
+//        return "redirect:/";
+//    }
 }

@@ -40,7 +40,7 @@ public class securityConfig extends WebSecurityConfigurerAdapter{
         http
                 .authorizeRequests()
                 .antMatchers("/admin").hasRole("ADMIN") // antmatcher = match against paths into our application and indcating the type of security for that path.
-                .antMatchers("/", "/home").permitAll() // hasrole limits to a specific role while permitAll lets everyone access a path. 
+                .antMatchers("/", "/home", "home.html").permitAll() // hasrole limits to a specific role while permitAll lets everyone access a path. 
                 .antMatchers("/css/**", "/js/**", "/fonts/**","/images/**").permitAll()
                 .anyRequest().hasRole("USER")// indicating security for any requests that does not match an existing pattern
                 .and()

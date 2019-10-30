@@ -27,7 +27,7 @@ public class CategoryController {
     @GetMapping("/category")
     public String index(Model model) {
         model.addAttribute("Categories", Category.findAll());
-        return "index";
+        return "home";
     }
     @PostMapping("/addCategory")
     public String addCategory(Category category) {
