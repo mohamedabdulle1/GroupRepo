@@ -84,10 +84,32 @@ public class BlogPostController {
         BlogPost.save(post);
         return "redirect:/contentcreation";
     }
-    
+    @GetMapping("/basketball")
+    public String BasketballIndex(Model model){
+        model.addAttribute("BlogPosts", BlogPost.findAll());
+        return "basketball";
+    }
+    @PostMapping("/basketball")
+    public String addBasketball(BlogPost post){
+        BlogPost.save(post);
+        return "redirect:/basketball";
+        
+    }
+    @GetMapping("/aboutus")
+    public String aboutIndex(Model model){
+        model.addAttribute("BlogPosts", BlogPost.findAll());
+        return "about";
+    }
+    @PostMapping("/aboutus")
+    public String addAboutUs(BlogPost post){
+        BlogPost.save(post);
+        return "redirect:/aboutus";
+    }  
+  
 //    @GetMapping("/Admin")
 //    public String Added{
 //        Users.save(posted);
 //        return "redirect:/";
 //    }
 }
+

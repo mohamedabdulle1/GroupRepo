@@ -7,6 +7,8 @@ package com.sg.SportsBlog.Controller;
 
 import com.sg.SportsBlog.DAO.RolesDao;
 import com.sg.SportsBlog.DAO.UsersDao;
+import com.sg.SportsBlog.DTO.BlogPost;
+import com.sg.SportsBlog.DTO.Category;
 import com.sg.SportsBlog.DTO.Roles;
 import com.sg.SportsBlog.DTO.Users;
 import java.io.Serializable;
@@ -120,6 +122,11 @@ public class AdminController implements Serializable {
        }else{
            return "redirect:/editUser ?id=" + id + "error=1";
        }
+        
+    }
+ 
+    
+      
    }
 
-}
+
