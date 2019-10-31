@@ -15,6 +15,8 @@ import com.sg.SportsBlog.DTO.Users;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,6 +33,11 @@ public class BlogPostController {
     
     @Autowired
     BlogPostDao BlogPost;
+    
+    
+    @Autowired
+    UsersDao UserPost;
+    
     
     @GetMapping("/")
     public String index(Model model) {
@@ -74,13 +81,18 @@ public class BlogPostController {
     }
     
      @GetMapping("/contentcreation")
-    public String  contentcreation(Model model) {
-        model.addAttribute("BlogPosts", BlogPost.findAll());
+    public String  blogPosts(Model model) {
+        List<BlogPost> posts = BlogPost.findAll();
+        model.addAttribute("BlogPosts", posts);
         return "contentcreation";
     }  // sort blogpost by newest p
     
-      @PostMapping("/home")
-    public String contentcreation(BlogPost post) {
+      @PostMapping("/contentcreation")
+    public String addPost(BlogPost post) {
+        Authentication authenication = SecurityContextHolder.getContext().getAuthentication();
+        String name = authenication.getName();
+        Users user = UserPost.findUserByUsername(name);
+        post.setBlogPostID(user.getUsersId());
         BlogPost.save(post);
         return "redirect:/contentcreation";
     }
